@@ -1,0 +1,45 @@
+<ion-app>
+
+  <ion-menu side="start" menuId="first" contentId="main-content" >
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-menu-toggle>
+          <ion-item routerLink="/events">
+            <ion-icon name="happy-outline" slot="start"></ion-icon>
+            <ion-label>Events</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/user-profile">
+            <ion-icon name="person-circle" slot="start"></ion-icon>
+            <ion-label>My profile</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+            <ion-item routerLink="/my-events">
+                <ion-icon name="rocket-outline" slot="start"></ion-icon>
+                <ion-label>My events</ion-label>
+            </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item (click)="onLogOut()">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label>Log out</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+
+
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+
+
+</ion-app>

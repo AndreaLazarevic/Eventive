@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Saved</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!--  <ion-segment [(ngModel)]="calendar.mode">-->
+<!--    <ion-segment-button value="month">-->
+<!--      <ion-label>Month</ion-label>-->
+<!--    </ion-segment-button>-->
+<!--    <ion-segment-button value="week">-->
+<!--      <ion-label>Week</ion-label>-->
+<!--    </ion-segment-button>-->
+<!--    <ion-segment-button value="day">-->
+<!--      <ion-label>Day</ion-label>-->
+<!--    </ion-segment-button>-->
+<!--  </ion-segment>-->
+
+
+  <ion-row>
+    <!-- Move back one screen of the slides -->
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="prevMonth()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="8" class="ion-text-center">
+      <h2>{{ viewTitle }}</h2>
+    </ion-col>
+
+    <!-- Move forward one screen of the slides -->
+    <ion-col size="2">
+      <ion-button fill="clear" (click)="nextMonth()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <calendar
+  [eventSource]="eventSource"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onEventSelected)="onEventSelected($event)"
+  startHour="6"
+  endHour="20"
+  step="30"
+  startingDayWeek="1"
+  [monthviewDisplayEventTemplate]="template">
+  </calendar>
+
+  <ng-template #template let-view="view" let-row="row" let-col="col">
+    <div [class.with-event]="view.dates[row*7+col].events.length">
+      {{view.dates[row*7+col].label}}
+      <div class="indicator-container">
+        <div class="event-indicator" *ngFor="let e of view.dates[row*7+col].events"></div>
+      </div>
+    </div>
+  </ng-template>
+
+</ion-content>

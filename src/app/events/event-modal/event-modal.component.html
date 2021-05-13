@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="onAddEvent()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [ngModel]="name" name="name" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="start">Starting date</ion-label>
+            <ion-datetime [ngModel]="startingDate.toISOString()" name="startingDate" required displayFormat="DD/MM/YYYY"
+                          min="2020-01-01" max="2025-01-01" placeholder="Select Date"> </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="start">Ending date</ion-label>
+            <ion-datetime [ngModel]="endingDate.toISOString()" name="endingDate" required displayFormat="DD/MM/YYYY"
+                          min="2020-01-01" max="2025-01-01" placeholder="Select Date"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Location</ion-label>
+            <ion-input type="text" [ngModel]="location" name="location" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea type="text" rows="6" [ngModel]="description" name="description" required></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Image URL</ion-label>
+            <ion-input type="text" [ngModel]="imageUrl" name="imageUrl" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label>Category</ion-label>
+            <ion-select placeholder="Select category" okText="Okay" cancelText="Dismiss"
+                        [ngModel]="category" name="category" required>
+              <ion-select-option value="Theaters">Theaters</ion-select-option>
+              <ion-select-option value="Festivals">Festivals</ion-select-option>
+              <ion-select-option value="Concerts">Concerts</ion-select-option>
+              <ion-select-option value="Sports">Sports</ion-select-option>
+              <ion-select-option value="Clubbing" disabled>Clubbing</ion-select-option>
+            </ion-select>
+          </ion-item>
+<!--          <ion-item>-->
+<!--            <ion-label position="floating">Category</ion-label>-->
+<!--            <ion-input type="text" [ngModel]="category" name="category" required></ion-input>-->
+<!--          </ion-item>-->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">More details (URL)</ion-label>
+            <ion-input type="text" [ngModel]="moreDetails" name="moreDetails" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="role === 'admin'">
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item >
+            <ion-label>Valid</ion-label>
+            <ion-toggle [ngModel]="valid" name="valid"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3" *ngIf="role === 'user'">
+          <ion-button type="submit" expand="block" [disabled]="f.invalid">Add</ion-button>
+        </ion-col>
+        <ion-col size-sm="6" offset-sm="3" *ngIf="role === 'admin'">
+          <ion-button type="submit" expand="block" [disabled]="f.invalid">Update</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+</ion-content>

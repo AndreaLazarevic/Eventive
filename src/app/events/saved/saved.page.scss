@@ -1,0 +1,32 @@
+.indicator-container {
+  padding-left: 0.5rem;
+  padding-bottom: 0.4rem;
+}
+
+.event-indicator {
+  background: white;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  display: table-cell;
+}
+
+/*.monthview-eventdetail-timecolumn {
+  //display: none;
+  visibility: hidden !important;
+}*/
+
+:host ::ng-deep {
+  .monthview-primary-with-event {
+    background-color: var(--ion-color-primary) !important;
+  }
+
+  .monthview-selected {
+    background-color: var(--ion-color-dark-tint) !important;
+  }
+}
+
+/*.with-event {
+  background-color: var(--ion-color-primary);
+  //border-radius: 15px;
+}*/

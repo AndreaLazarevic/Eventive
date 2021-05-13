@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/events/tabs/explore"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="profile.firstName" name="name">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Surname</ion-label>
+            <ion-input type="text" [(ngModel)]="profile.lastName" name="surname">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label>Notifications</ion-label>
+<!--            <ion-toggle [checked]="profile.notifications" name="notifications"></ion-toggle>-->
+            <ion-toggle [(ngModel)]="profile.notifications" [ngModelOptions]="{standalone: true}"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label><strong>Preferred categories:</strong></ion-label>
+            <ion-checkbox slot="start" [(ngModel)]="checkParent" [ngModelOptions]="{standalone: true}" [indeterminate]="indeterminateState"
+                          (click)="checkCheckbox()" ></ion-checkbox>
+          </ion-item>
+
+          <ion-list style="background-color: var(--ion-color-dark)">
+            <ion-item *ngFor="let checkboxes of Checkboxes">
+              <ion-label>{{checkboxes.value}}</ion-label>
+              <ion-checkbox slot="start"[(ngModel)]="checkboxes.isItemChecked" [ngModelOptions]="{standalone: true}" (ionChange)="verifyEvent()">
+              </ion-checkbox>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label>Clubbing</ion-label>
+              <ion-checkbox slot="start" disabled></ion-checkbox>
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+
+
+
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-sm="6" *ngIf="!previously_registered">
+          <ion-button type="submit" expand="block" shape="round" (click)="onCreateProfile()">Create</ion-button>
+<!--          <ion-button type="submit" expand="block" shape="round" (click)="onCreateProfile()">Create</ion-button>-->
+        </ion-col>
+        <ion-col size-sm="6" *ngIf="previously_registered">
+          <ion-button type="submit" expand="block" shape="round" (click)="onUpdateProfile()">Update</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

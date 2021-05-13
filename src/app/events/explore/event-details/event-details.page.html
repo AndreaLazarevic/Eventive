@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/events/tabs/explore" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Event details</ion-title>
+
+    <ion-buttons slot="end">
+      <!--<ion-fab-button size="small" color="dark" (click)="onEditEvent()" *ngIf="role === 'admin'">
+        <ion-icon name="pencil"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button size="small" color="dark" (click)="onDeleteEvent()" *ngIf="role === 'admin'">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>-->
+
+      <ion-fab-button size="small" color="dark" (click)="onEditEvent()" *ngIf="editAndDeleteEnabled">
+        <ion-icon name="pencil"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button size="small" color="dark" (click)="onDeleteEvent()" *ngIf="editAndDeleteEnabled">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner color="white"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="!isLoading">
+    <ion-img [src]="event.imageUrl"></ion-img>
+    <ion-card-header>
+      <ion-card-title>
+        <h2>{{event.name}}</h2>
+      </ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <h3><strong>{{event.category.toUpperCase()}}</strong></h3>
+      <h3 *ngIf="event.startingDate.getTime() === event.endingDate.getTime()">{{event.startingDate.toLocaleDateString("en-GB")}} |
+        {{event.location}}</h3>
+      <h3 *ngIf="event.startingDate.getTime() !== event.endingDate.getTime()">{{event.startingDate.toLocaleDateString("en-GB")}}-{{event.endingDate.toLocaleDateString("en-GB")}} </h3>
+      <br>
+      <h3>Description: {{event.description}}</h3>
+      <h3>More info: <a style="color: white" href="{{event.moreDetails}}">{{event.moreDetails}}</a></h3>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

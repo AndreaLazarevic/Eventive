@@ -1,0 +1,7 @@
+{
+  "name": "aplikacija",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

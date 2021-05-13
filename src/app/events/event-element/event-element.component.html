@@ -1,0 +1,7 @@
+<ion-item [routerLink]="event.id">
+  <ion-avatar slot="start">
+    <ion-img [src]="event.imageUrl"></ion-img>
+  </ion-avatar>
+  <ion-label>{{event.name}}</ion-label>
+  <ion-icon [name]="icon" slot="end" (click)="removeOrAdd($event)" *ngIf="role === 'user' && iconVisible"></ion-icon>
+</ion-item>

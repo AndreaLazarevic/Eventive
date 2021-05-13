@@ -1,0 +1,13 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="explore">
+      <ion-icon name="eye" color="dark"></ion-icon>
+      <ion-label>Explore</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="saved" *ngIf="role === 'user'">
+      <ion-icon name="bookmark-outline" color="dark"></ion-icon>
+      <ion-label>Saved</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
